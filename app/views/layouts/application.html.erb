@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestCode</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Tweet Management</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              Welcome <%= current_user.username %>
+              <li> <%= link_to "AccountSettings", edit_user_registration_path %></li>
+              <li><%= link_to "Logout", destroy_user_session_path ,method: :delete%></li>
+              <% else %>
+              <li><%= link_to "Login", new_user_session_path %> </li>
+              <li><%= link_to "Register", new_user_registration_path %></li>
+              
+            <% end %>
+           </ul>
+         </div>
+      </div>
+    </nav>
+    <div class= "container-fluid">
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+     <%= yield %>
+    </div>  
+  </body>
+</html>
+
+<%# if user_signed_in? %>
+  <!-- Welcome <%#= current_user.username %> -->
+   <%#= link_to "AccountSettings",edit_user_registration_path %> 
+   <%#= link_to "Logout",destroy_user_session_path, method: :delete %> 
+  <%# else %>
+  <%#= link_to "Login", new_user_session_path %>  <%#= link_to "Register", new_user_registration_path %>
+<%# end %>
